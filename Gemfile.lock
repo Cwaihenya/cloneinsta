@@ -99,6 +99,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.3)
@@ -256,6 +260,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   carrierwave
   coffee-rails
+  dotenv-rails
   jbuilder (~> 2.7)
   letter_opener_web
   listen (~> 3.3)
@@ -269,7 +274,6 @@ DEPENDENCIES
   selenium-webdriver
   spring
   turbolinks (~> 5)
-  tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
