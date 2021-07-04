@@ -18,7 +18,7 @@ module CynthiaApp
       g.helper false
     end
     # Configuration for the application, engines, and railties goes here.
-    #
+    config.secret_key_base = 'blipblapblup'
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
