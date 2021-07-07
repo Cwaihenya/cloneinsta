@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-
+  before_action:logged_in?, only:[:new,:create]
+   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -43,11 +44,13 @@ end
       end
     end
   end
+
   def confirm
     @post = current_user.posts.build(post_params)
     @user = @post.user
       render :new if @post.invalid?
     end
+
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     @user = @post.user

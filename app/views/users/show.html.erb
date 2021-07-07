@@ -1,5 +1,15 @@
+<% if logged_in? %>
 <h1><%= @user.name %></h1>
 <p>
 
   <%= image_tag @user.image.url %>
 </p>
+
+<% if current_user.id == @user.id %>
+    <%= link_to 'Favorites List', favorites_path %> |
+    <%= link_to 'Edit profile', edit_user_path(@user) %>
+  <% end %>
+<% else %>
+  <h1>user：<%= @user.name %></h1>
+  <h3><%= link_to "Log in", new_session_path %>please</h3>
+<% end %>

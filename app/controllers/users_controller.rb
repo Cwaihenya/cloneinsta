@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
     before_action :set_user, only: %i[ show edit update destroy ]
    skip_before_action :login_required, only: [:new, :create]
-
+before_action :logged_in?, only: [:edit, :update, :delete]
+before_action :own_user, only: [:edit, :update, :destroy]
     # GET /posts or /posts.json
     def index
       @user = User.all
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
       end
 
       def show
-        @users = User.all
+        #@users = User.all
         @user = User.find(params[:id])
         # @posts =@user.posts
       #  @favorite_photos = @user.favorite_photos
@@ -31,7 +32,14 @@ class UsersController < ApplicationController
       def edit
               @user = User.find(params[:id])
       end
-
+      def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+          redirect_to show, notice: "Edited  "
+        else
+          render :edit
+        end
+        end
       private
       def set_user
       @user = User.find(params[:id])
@@ -40,5 +48,9 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password,
                                      :password_confirmation, :image, :image_cache)
       end
-
+      def own_user
+      if current_user.id != @user.id
+      redirect_to user_path
+    end
+  end
     end

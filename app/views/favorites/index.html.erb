@@ -9,7 +9,7 @@
   <tr>
     <% @favorites.each do |favorite| %>
     <td><%= favorite.post.user.name %></td>
-    <td><%= favorite.post.content %></td>
+    <td><%= favorite.post.caption %></td>
     <td><%= image_tag favorite.post.image.url %></td>
   </tr>
 <% end %>
